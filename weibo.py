@@ -1,5 +1,4 @@
 # encoding: utf-8
-# file:post_weibo.py
 
 import json
 import urllib
@@ -7,9 +6,7 @@ import urllib.request
 import time
 import requests
 
-
 def post_weibo(weibo_text, pic_uri=None):
-    """发表微博"""
     url_post_a_text = "https://api.weibo.com/2/statuses/share.json"
     ACCESS_TOKEN = ""
     playload = {
