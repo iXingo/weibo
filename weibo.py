@@ -1,46 +1,45 @@
 # encoding: utf-8
-
+# file:post_weibo.py
 import json
 import urllib
 import urllib.request
 import time
 import requests
 
+
 def post_weibo(weibo_text, pic_uri=None):
+    """发表微博"""
     url_post_a_text = "https://api.weibo.com/2/statuses/share.json"
     ACCESS_TOKEN = ""
     playload = {
         "access_token": ACCESS_TOKEN,
-        "status": unicode(weibo_text)
+        "status": weibo_text
     }
     if pic_uri is None:
         r = requests.post(url_post_a_text, data=playload, verify=False)
-        # print r.text
+        print(r.text)
 
     else:
         files = {"pic": open(pic_uri, "rb")}
-        r = requests.post(url_post_a_pic, data=playload, files=files, verify=False)
-        # print r.text
-
-        # print r.text
+        r = requests.post(url_post_a_text, data=playload, files=files, verify=False)
+        print(r.text)
 
 def post_myweibo(weibo_text, pic_uri=None):
     """发表微博"""
     url_post_a_text = "https://api.weibo.com/2/statuses/update.json"
-    url_post_a_pic = "https://upload.api.weibo.com/2/statuses/upload.json"
     ACCESS_TOKEN = ""
     weibo_text = weibo_text + time.strftime(u'[来自微信,更新时间:%Y-%m-%d %H:%M:%S]', time.localtime(time.time()))
     playload = {
         "access_token": ACCESS_TOKEN,
-        "status": unicode(weibo_text)
+        "status": weibo_text.encode('unicode')
     }
     if pic_uri is None:
         r = requests.post(url_post_a_text, data=playload, verify=False)
-        # print r.text
+        print(r.text)
 
     else:
         files = {"pic": open(pic_uri, "rb")}
-        r = requests.post(url_post_a_pic, data=playload, files=files, verify=False)
+        r = requests.post(url_post_a_text, data=playload, files=files, verify=False)
 
 def get_jokes():
     """获得笑话"""
@@ -107,7 +106,7 @@ def get_words_info(index):
 def result(queryStr,userid):
     loginUrl = 'http://www.tuling123.com/openapi/api'
     key = '3798004d74c9426d90e28d0fbb7ecebc'
-    postdata = urllib.urlencode({
+    postdata = urllib.parse.urlencode({
         'key': key,
         'info': queryStr,
         'userid': userid
@@ -159,6 +158,3 @@ if __name__ == "__main__":
             post_weibo(words)
         except Exception as e:
             print(e)
-
-        # 每次执行完上面的任务，每60秒执行一次
-        time.sleep(20)
