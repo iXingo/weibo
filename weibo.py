@@ -8,7 +8,6 @@ import requests
 
 
 def post_weibo(weibo_text, pic_uri=None):
-    """发表微博"""
     url_post_a_text = "https://api.weibo.com/2/statuses/share.json"
     ACCESS_TOKEN = ""
     playload = {
