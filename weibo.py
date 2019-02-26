@@ -24,7 +24,6 @@ def post_weibo(weibo_text, pic_uri=None):
         print(r.text)
 
 def post_myweibo(weibo_text, pic_uri=None):
-    """发表微博"""
     url_post_a_text = "https://api.weibo.com/2/statuses/update.json"
     ACCESS_TOKEN = ""
     weibo_text = weibo_text + time.strftime(u'[来自微信,更新时间:%Y-%m-%d %H:%M:%S]', time.localtime(time.time()))
