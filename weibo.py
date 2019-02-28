@@ -138,9 +138,7 @@ if __name__ == "__main__":
             web_text = info["text"] + info["date"][1] + u"," + info["date"][2] + u"[图]" + info["pic_info"]
             # print requests.get(info["pic_url"], verify=False).content
             with open(pic_name, "wb") as pic:
-                # 由于直接通过图片url的形式发表微博的API接口需要申请
-                # 所以选择先把图片保存成图片文件再发布
-                # 当然也可以使用StringIO不保存直接编码进POST请求
+                #
 
                 pic.write(requests.get(info["pic_url"], verify=False).content)
                 pic.close()
