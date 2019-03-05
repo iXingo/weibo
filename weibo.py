@@ -1,5 +1,5 @@
 # encoding: utf-8
-# file:post_weibo.py
+
 import json
 import urllib
 import urllib.request
