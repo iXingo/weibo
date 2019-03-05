@@ -1,2 +1,2 @@
 # weibo
-This is a weibo project powered by python
+This is a project powered by python
